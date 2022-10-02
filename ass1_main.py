@@ -19,17 +19,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 of the alphabet (without distinguishing between lower and upper case) in the
 book.
 '''
-
-
-import numpy as np
+import time
 import argparse
+import numpy as np
 import letter_counter
 import histogram
-import time
 
 
-parser = argparse.ArgumentParser(description='Print some book statistics')
-parser.add_argument('infile', type=str, help='path to the input file')
+parser = argparse.ArgumentParser(description ='Print some book statistics')
+parser.add_argument('infile', type=str, help ='path to the input file')
+parser.add_argument('histo',type=str, choices=['y', 'n'], help =
+                    'tipe y to plot an histogram of datas frequencies, else tipe n')
 args = parser.parse_args()
 
 t0 = time.process_time()
@@ -67,7 +67,9 @@ print('warning: this program does not distinguish lower and upper case.')
 '''print a histogram of letters'
    frequencies
 '''
-histogram.hist(alphabeth,k,'book_histo')
+if args.histo == 'y':
+    print('histogram plotted')
+    histogram.hist(alphabeth,k,'book_histo')
 
 t_elapsed = time.process_time() - t0
 
